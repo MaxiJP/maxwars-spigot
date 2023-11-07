@@ -1,0 +1,8 @@
+name: MaxWars
+version: '${project.version}'
+main: dev.maxprime.maxwars.MaxWars
+
+commands:
+  gui:
+    description: Testing testing 123!
+    usage: /<command>

@@ -1,0 +1,8 @@
+name: MaxWars
+version: '1.8-MAX'
+main: dev.maxprime.maxwars.MaxWars
+
+commands:
+  gui:
+    description: Testing testing 123!
+    usage: /<command>
