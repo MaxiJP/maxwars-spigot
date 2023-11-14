@@ -4,12 +4,15 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -66,5 +69,21 @@ public class EventHandler implements Listener {
         }
     }
 
+    @org.bukkit.event.EventHandler
+    public void onInteract(PlayerInteractEvent event) {
+
+        Action action = event.getAction();
+
+        Player player = event.getPlayer();
+
+        if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
+            if (player.getItemInHand().getType().equals(Material.FIREBALL)) {
+                ItemStack fireballUsed = event.getItem();
+                Fireball f = player.launchProjectile(Fireball.class);
+                f.setIsIncendiary(false);
+                fireballUsed.setAmount(0);
+            }
+        }
+    }
 
 }
